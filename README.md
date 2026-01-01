@@ -8,8 +8,9 @@ A simple and lightweight Android notes application built using **Jetpack Compose
 The app allows users to create, edit, and manage personal notes in a clean and intuitive interface.
 
 ---
-[![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)]
+![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)
 (https://play.google.com/store/apps/details?id=com.prabhat.notesapp)
+
 
 
 ## ✨ Features
@@ -57,7 +58,7 @@ The app allows users to create, edit, and manage personal notes in a clean and i
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/your-username/notes-app.git
+   git clone https://github.com/Prabhat-kr-Tiwari/Notes
    ```
 2. Open the project in Android Studio
 3. Sync Gradle and run the app on an emulator or device
