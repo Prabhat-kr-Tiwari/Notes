@@ -2,20 +2,22 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
+
     id("com.google.devtools.ksp")
     id ("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.prabhat.notesapp"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.prabhat.notesapp"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 7
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -33,18 +35,23 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(
+                org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+            )
+        }
     }
     buildFeatures {
         compose = true
     }
-    composeOptions {
+    /*composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
-    }
+    }*/
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -77,63 +84,60 @@ dependencies {
 
 
     // paging 3
-    implementation ("androidx.paging:paging-runtime-ktx:3.3.0")
-    implementation ("androidx.paging:paging-compose:3.3.0")
+    implementation (libs.androidx.paging.runtime.ktx)
+    implementation (libs.androidx.paging.compose)
 
     //navigation
 //    implementation ("androidx.navigation:navigation-compose:2.7.7")
 
 
     // Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
+    implementation (libs.kotlinx.coroutines.play.services)
 
     // Coroutine Lifecycle Scopes
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.runtime.ktx.v241)
 
-    //Dagger - Hilt
-//    implementation 'com.google.dagger:hilt-android:2.39'
-    //May need okkhttp also
 
-    // Dagger - Hilt
-    /* kapt "com.google.dagger:hilt-android-compiler:2.39"
-     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-     kapt "androidx.hilt:hilt-compiler:1.0.0"
-     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"*/
+
     // Dagger Hilt
-    implementation ("com.google.dagger:hilt-android:2.50")
-//    kapt ("com.google.dagger:hilt-compiler:2.51")
-    ksp("com.google.dagger:hilt-android-compiler:2.50")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation (libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
-    ksp ("androidx.hilt:hilt-compiler:1.0.0")
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.okhttp)
+    ksp (libs.androidx.hilt.compiler)
 
     // Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
 
     // Coroutine Lifecycle Scopes
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.2")
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+//    implementation (libs.androidx.lifecycle.runtime.ktx.v282)
 
     // Coil
-    implementation ("io.coil-kt:coil-compose:2.2.2")
+    implementation (libs.coil.compose)
 
     // system ui controller
-    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.17.0")
+    implementation (libs.accompanist.systemuicontroller)
 
     // flow layout
-    implementation ("com.google.accompanist:accompanist-flowlayout:0.24.4-alpha")
+    implementation (libs.accompanist.flowlayout)
 
 
     //Room
-    implementation ("androidx.room:room-ktx:2.6.1")
-    implementation ("androidx.room:room-runtime:2.6.1")
-    ksp ("androidx.room:room-compiler:2.6.1")
+    implementation (libs.androidx.room.ktx)
+    implementation (libs.androidx.room.runtime)
+    ksp (libs.androidx.room.compiler)
+    implementation(libs.androidx.material.icons.extended)  // This should work now
+
+
+
+
 }
